@@ -3,8 +3,8 @@ using UnityEngine;
 public class RocketBehaviour : MonoBehaviour
 {
     private Transform target;
-    private float speed = 15.0f;
     private bool homing;
+    private float speed = 15.0f;
     private float rocketStrength = 15.0f;
     private float aliveTimer = 5.0f;
     // Update is called once per frame
@@ -12,15 +12,15 @@ public class RocketBehaviour : MonoBehaviour
     {
         if(homing && target!= null)
         {
-            Vector3 moveDirection = (target.position - transform.position).normalized;
+            Vector3 moveDirection = (target.transform.position - transform.position).normalized;
             transform.position += moveDirection * speed * Time.deltaTime;
             transform.LookAt(target);
         }
     }
 
-    public void Fire(Transform homingTarget)
+    public void Fire(Transform newTarget)
     {
-        target = homingTarget;
+        target = newTarget;
         homing = true;
         Destroy(gameObject, aliveTimer);
     }

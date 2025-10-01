@@ -1,5 +1,6 @@
+using System.Collections;
 using UnityEngine;
-public enum PowerUpType { None, Pushback, Rockets }
+public enum PowerUpType { None, Pushback, Rockets, Smash }
 public class PowerUp : MonoBehaviour
 {
     public PowerUpType powerUpType;
@@ -12,6 +13,6 @@ public class PowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
