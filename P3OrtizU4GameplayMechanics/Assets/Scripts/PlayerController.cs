@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour
         {
             LaunchRockets();
         }
+
+        if (currentPowerUp == PowerUpType.Smash && Input.GetKeyDown(KeyCode.G) && !smashing)
+        {
+            smashing = true;
+            StartCoroutine(Smash());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Smash()
     {
-        var enemies = FindAnyObjectByType<Enemy>();
+        var enemies = FindObjectsOfType<Enemy>();
         //Store the y position before taking off
         floorY = transform.position.y;
 
@@ -117,6 +123,7 @@ public class PlayerController : MonoBehaviour
             //Apply an explosion force that originates from our position.
             if (enemies[i] != null)
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
+
         }
 
         //We are no longer smashing, so set the boolean to false
